@@ -24,33 +24,6 @@ export default function Chat() {
   const [loading, setLoading] = useState(false);
   const [isComposing, setIsComposing] = useState(false);
 
-  const fullFaqList = [
-    "아이 시력이 나빠지는 것 같아요. 어떻게 해야 하나요?",
-    "아이가 눈을 자주 비벼요. 괜찮은 건가요?",
-    "소아 근시는 어떻게 관리하나요?",
-    "눈이 자주 충혈돼요. 왜 그런가요?",
-    "비문증이 있는데 치료가 가능한가요?",
-    "눈이 건조하고 따가울 때 어떻게 해야 하나요?",
-    "라섹 수술 후 회복 기간이 얼마나 되나요?",
-    "백내장 수술은 아프지 않나요?",
-    "드림렌즈는 어떤 사람들이 착용하나요?",
-    "노안 수술도 가능한가요?",
-    "진료 예약은 어떻게 하면 되나요?",
-    "진료 시간과 휴무일 알려주세요.",
-    "병원은 어디에 위치해 있나요?",
-    "주차는 가능한가요?"
-  ];
-
-  const initialFaqItems = [
-    "라섹 수술 후 회복 기간이 얼마나 되나요?",
-    "안구건조증은 어떻게 치료하나요?",
-    "아이 시력이 나빠지는 것 같아요. 어떻게 해야 하나요?"
-  ];
-
-  const [faqItems, setFaqItems] = useState(initialFaqItems);
-  const [faqVisible, setFaqVisible] = useState(true);
-  const [showBooking, setShowBooking] = useState(false);
-
   const scrollToBottom = () => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -81,24 +54,12 @@ export default function Chat() {
       });
 
       const reply = res.data.reply;
-      const suggestedFaq = res.data.suggestedFaq || [];
-      const booking = res.data.showBooking || false;
-
       let adjustedReply = reply;
-      if (booking && !reply.includes('초록색 버튼')) {
+      if (!reply.includes('초록색 버튼')) {
         adjustedReply += "\n\n고객님~ 예약 원하시면 아래 초록색 버튼을 눌러주세요 😊";
       }
 
       setMessages([...newMessages, { role: 'bot', text: adjustedReply }]);
-      setShowBooking(booking);
-
-      if (suggestedFaq.length > 0) {
-        setFaqVisible(false);
-        setTimeout(() => {
-          setFaqItems(suggestedFaq);
-          setFaqVisible(true);
-        }, 250);
-      }
     } catch {
       setMessages([
         ...newMessages,
@@ -152,31 +113,15 @@ export default function Chat() {
             <div ref={chatEndRef} />
           </div>
 
-          <div
-            className={`transition-opacity duration-300 ease-in-out ${
-              faqVisible ? 'opacity-100' : 'opacity-0'
-            } flex flex-wrap gap-2 mb-4`}
-          >
-            {faqItems.map((item, index) => (
-              <button
-                key={index}
-                onClick={() => sendMessage(item)}
-                className="px-3 py-1 bg-gray-200 hover:bg-gray-300 text-sm rounded-md text-gray-800 transition shadow-sm"
-              >
-                {item}
-              </button>
-            ))}
-
-            {showBooking && (
-              <a
-                href="https://booking.naver.com/booking/13/bizes/1104353"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm rounded-md mt-2 font-semibold shadow-md"
-              >
-                📅 아이빛안과 예약하기
-              </a>
-            )}
+          <div className="flex justify-center mb-4">
+            <a
+              href="https://booking.naver.com/booking/13/bizes/1104353"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm rounded-md font-semibold shadow-md"
+            >
+              📅 아이빛안과 예약하기
+            </a>
           </div>
 
           <div className="flex gap-2">
