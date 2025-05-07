@@ -88,7 +88,7 @@ export default function Chat() {
         }))
       ];
 
-      const res = await axios.post('http://localhost:4000/chat', {
+      const res = await axios.post('https://eye-szg1.onrender.com/chat', {
         messages: gptMessages
       });
 
