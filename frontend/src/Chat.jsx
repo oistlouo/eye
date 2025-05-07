@@ -82,7 +82,7 @@ export default function Chat() {
       >
         <div className="relative z-10 p-6 bg-white/80">
           <h2 className="text-2xl font-bold mb-4 text-center text-blue-600">
-            👁 아이빛안과 온라인 채팅 상담
+          💬 아이빛안과 온라인 상담실
           </h2>
 
           <div className="space-y-3 mb-4 max-h-[450px] overflow-y-auto">
