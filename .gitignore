@@ -1,0 +1,16 @@
+# 공통
+node_modules/
+.env
+.DS_Store
+.vscode/
+*.log
+
+# React (frontend)
+frontend/node_modules/
+frontend/.env
+frontend/.next/
+frontend/build/
+
+# Node.js (backend)
+backend/node_modules/
+backend/.env
