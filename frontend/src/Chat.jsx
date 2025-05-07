@@ -5,7 +5,7 @@ export default function Chat() {
   const [messages, setMessages] = useState([
     {
       role: 'bot',
-      text: `💁‍♀️ 안녕하세요! 저는 아이빛안과의 AI 상담사입니다.
+      text: `💁‍♀️ 안녕하세요! 저는 아이빛안과의 온라인 상담사입니다.
 
 궁금하신 점이 있다면 언제든지 물어보세요!
 
@@ -54,12 +54,7 @@ export default function Chat() {
       });
 
       const reply = res.data.reply;
-      let adjustedReply = reply;
-      if (!reply.includes('초록색 버튼')) {
-        adjustedReply += "\n\n고객님~ 예약 원하시면 아래 초록색 버튼을 눌러주세요 😊";
-      }
-
-      setMessages([...newMessages, { role: 'bot', text: adjustedReply }]);
+      setMessages([...newMessages, { role: 'bot', text: reply }]);
     } catch {
       setMessages([
         ...newMessages,
