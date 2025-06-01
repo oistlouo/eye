@@ -5,7 +5,7 @@ export default function Chat() {
   const [messages, setMessages] = useState([
     {
       role: 'bot',
-      text: `💁‍♀️ 안녕하세요! 저는 아이빛안과의 온라인 상담사입니다.
+      text: `💁‍♀️ 안녕하세요! 저는 아이빛안과의 인공지능 온라인 상담사입니다.
 
 눈에 불편함이 있으신가요?
 증상이나 걱정되는 부분을 말씀해 주세요. 어떤 내용이든 친절히 도와드릴게요!
@@ -82,6 +82,12 @@ export default function Chat() {
           <h2 className="text-2xl font-bold mb-4 text-center text-blue-600">
           💬 아이빛안과 온라인 상담실
           </h2>
+{/* ✅ 여기에 추가 */}
+<div className="bg-yellow-50 text-gray-800 text-sm p-3 rounded-md mb-4 border border-yellow-300">
+  <strong>아이빛안과 온라인(AI) 상담실 안내</strong><br />
+  상담내용은 AI 기반 정보로 제공되며,<br />
+  보다 정확한 상담은 진료 후 이루어질 수 있으니 참고 부탁드립니다.
+</div>
 
           <div className="space-y-3 mb-4 max-h-[450px] overflow-y-auto">
             {messages.map((msg, i) => (
